@@ -88,7 +88,7 @@ router.get('/attendance', (req, res, next) => {
 // POST new event
 router.post('/', (req, res, next) => {
   const newEvent = req.body
-  newEvent.orgs = org
+  newEvent.org = org
   events.create(newEvent, (error, data) => {
     if (error) {
       return next(error)

@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const { users } = require('../models/models');
 const saltRounds = 10;
 const salt = bcrypt.genSaltSync(saltRounds);
-// POST /users/login - user login
+// POST /users/login - login
 router.post('/login', async (req, res, next) => {
   try {
     console.log('Hello')
@@ -15,18 +15,20 @@ router.post('/login', async (req, res, next) => {
     if (!user) {
       return res.status(401).json({ message: 'Invalid username or password' });
     }
-    //use bcrypt.compare to compare the plain text password with the hashed password stored in the db
-    const isMatch = await bcrypt.compare(password, user.hashedPassword); 
+    const isMatch = await bcrypt.compare(password, user.hashedPassword);
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid username or password' });
     }
-    else{
+    else {
       res.status(200).json(user);
     }
+    console.log(user.hashedPassword);
+    console.log(user.role);
   } catch (err) {
     next(err);
   }
 });
+
 
 // POST /users - create a new user
 router.post('/', async (req, res, next) => {

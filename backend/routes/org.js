@@ -6,7 +6,7 @@ const orgid = process.env.ORG
 // importing data model schemas
 const { orgs } = require('../models/models')
 
-// GET organization information
+// GET org
 router.get('/', (req, res, next) => {
   console.log(orgid)
   orgs.findOne({ org : orgid }, (error, data) => {

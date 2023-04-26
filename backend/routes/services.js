@@ -48,16 +48,15 @@ router.get('/id/:id', (req, res, next) => {
   })
 })
 
-// GET services based on search query
+// GET events based on search query
 // Ex: '...?name=Food&searchBy=name'
 router.get('/search/', (req, res, next) => {
   const dbQuery = { org: org }
   switch (req.query.searchBy) {
     case 'name':
-      // match service name, no anchor
+      // match event name, no anchor
       dbQuery.name = { $regex: `${req.query.name}`, $options: 'i' }
       break
-      // match service status (either Active or Inactive)
     case 'status':
       dbQuery.status = { $eq: req.query.status }
       break
@@ -77,7 +76,7 @@ router.get('/search/', (req, res, next) => {
 // POST new service
 router.post('/', (req, res, next) => {
   const newServices = req.body
-  newServices.orgs = org
+  newServices.org = org
   services.create(newServices, (error, data) => {
     if (error) {
       return next(error)
@@ -114,7 +113,7 @@ router.put('/updatestatus/:id', (req, res, next) => {
   })
 
 
-// hard DELETE service by ID, as per project specifications
+// hard DELETE event by ID, as per project specifications
 router.delete('/:id', (req, res, next) => {
   services.findByIdAndDelete(req.params.id, (error, data) => {
     if (error) {
