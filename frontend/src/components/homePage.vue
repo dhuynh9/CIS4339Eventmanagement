@@ -83,7 +83,6 @@ export default {
       try {
         this.error2 = null
         this.loading2 = true
-        // get the zip code and the number of client in those zip code
         const response = await axios.get(`${apiURL}/clients/zipcount`)
         this.zipcount = response.data
         this.pielabel = response.data.map(

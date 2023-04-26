@@ -61,20 +61,6 @@ const routes = [
       component: () => import('../components/eventDetails.vue'),
       meta: { requiresAuth: true}
     }, 
-    {
-      path: '/findservices',
-      name: 'findservices',
-      component: () => import('../components/findServices.vue'),
-      meta: { requiresAuth: true}
-    },
-    {
-      path: '/editservice/:id',
-      name: 'editservice',
-      props: true,
-      component: () => import('../components/editservice.vue'),
-      meta: { requiresAuth: true, role: 1 }
-    }
-
   ]
   const router = createRouter({
     history: createWebHistory(),

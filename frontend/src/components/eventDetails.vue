@@ -60,18 +60,15 @@ export default {
         .setZone(DateTime.now().zoneName, { keepLocalTime: true })
         .toISODate()
     },
-    // update event based on event id
     handleEventUpdate() {
       axios.put(`${apiURL}/events/update/${this.id}`, this.event).then(() => {
         alert('Update has been saved.')
         this.$router.back()
       })
     },
-    // update client in that event
     editClient(clientID) {
       this.$router.push({ name: 'updateclient', params: { id: clientID } })
     },
-    // delete event based on event id
     eventDelete() {
       axios.delete(`${apiURL}/events/${this.id}`).then(() => {
         alert('Event has been deleted.')

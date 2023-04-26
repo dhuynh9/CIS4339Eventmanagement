@@ -22,7 +22,6 @@ export const useLoggedInUserStore = defineStore({
     async login(username, password) {
       try {
         console.log(username, password)
-        // send axios post to backend along with username and password
         const response = await axios.post(`${apiURL}/users/login`, {username, password});
         console.log(response)
         if(response)
