@@ -10,7 +10,7 @@ export default {
   },
   data() {
     return {
-      /* org: '', */
+       org: '', 
       service: {
         name: '',
         status: 'Active',
@@ -18,14 +18,14 @@ export default {
       }
     }
   } ,  
-  /* created() {
+   created() {
     axios.get(`${apiURL}/org`).then((res) => {
       this.org = res.data._id
     })
   },
   mounted() {
     window.scrollTo(0, 0)
-  }, */
+  }, 
   methods: {    
     async handleSubmitForm() {
       // Checks to see if there are any errors in validation
@@ -38,7 +38,7 @@ export default {
           .post(`${apiURL}/services`, this.service)
           .then(() => {
             alert('Service has been added.')
-            //this.$router.push({ name: 'findservice' })
+            this.$router.push({ name: 'findservice' })
           })
           .catch((error) => {
             console.log(error)
